@@ -38,14 +38,14 @@ export default function HomePage() {
             </Button>
           </LoginLink>
           <div className="flex items-center justify-center gap-2">
-            <Moon className="h-5 w-5" />
+            <Sun className="h-5 w-5" />
             <Switch
               checked={isDark}
               onCheckedChange={(checked) =>
                 setTheme(checked ? "dark" : "light")
               }
             />
-            <Sun className="h-5 w-5" />
+            <Moon className="h-5 w-5" />
           </div>
         </nav>
       </header>
