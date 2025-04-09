@@ -33,11 +33,11 @@ function FileList() {
     console.log("Files" + filesList);
   }, [filesList]);
   return (
-    <div>
-      <div className="overflow-x-auto lg:overflow-x-hidden">
+    <div className="md:pl-52 lg:pl-60">
+      <div className=" overflow-x-auto lg:overflow-x-hidden ">
         <table className="min-w-full divide-y-2 divide-gray-200">
           <thead className="ltr:text-left rtl:text-right">
-            <tr className="*:font-medium *:text-gray-900">
+            <tr className="*:font-medium text-gray-900 dark:text-white">
               <th className="px-3 py-2 whitespace-nowrap">File Name</th>
               <th className="px-3 py-2 whitespace-nowrap">Created At</th>
               <th className="px-3 py-2 whitespace-nowrap">Author</th>
@@ -48,7 +48,10 @@ function FileList() {
           <tbody className="divide-y divide-gray-200">
             {filesList.map((f: FILE, idx: number) => {
               return (
-                <tr className="*:text-gray-900 *:first:font-medium" key={idx}>
+                <tr
+                  className="text-gray-900 dark:text-white *:first:font-medium"
+                  key={idx}
+                >
                   <td
                     className="px-3 py-2 whitespace-nowrap cursor-pointer"
                     onClick={() => router.push("/workspace/" + f._id)}
@@ -60,14 +63,14 @@ function FileList() {
                   </td>
                   <td className="px-3 py-2 whitespace-nowrap">
                     <Image
-                      src={user?.picture}
+                      src={user?.picture || `/default-avatar.png`}
                       alt="User"
                       width={30}
                       height={30}
                       className="rounded-full"
                     />
                   </td>
-                  <td className="px-3 py-2 whitespace-nowrap">
+                  <td className="px-3 py-2 whitespace-nowrap ">
                     <DropdownMenu>
                       <DropdownMenuTrigger>
                         <MoreHorizontal />

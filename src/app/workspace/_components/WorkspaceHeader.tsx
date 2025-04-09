@@ -6,15 +6,17 @@ import React from "react";
 function WorkspaceHeader({
   trigger,
   setTrigger,
+  fileName,
 }: {
   trigger: boolean;
   setTrigger: (trigger: boolean) => void;
+  fileName: any;
 }) {
   return (
     <div className="bg-white border-2 border-b-gray-200 flex items-center justify-between pt-2 pb-2 px-7 ">
       <div className="flex flex-1/2 flex-col gap-1 pt-2">
         <Image src="/docuflow.png" alt="Logo" width={120} height={60} />
-        <h2>FileName</h2>
+        <h2>{fileName}</h2>
       </div>
       <div className="flex flex-1/2 gap-2 items-center justify-end ">
         <Button

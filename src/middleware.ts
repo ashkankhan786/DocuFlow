@@ -1,21 +1,24 @@
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+// middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
 export async function middleware(request: NextRequest) {
-  console.log("Middleware is running...");
-  const session = getKindeServerSession(); // Get the session object
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
 
-  if (!(await session.isAuthenticated())) {
-    console.log("User is not authenticated, redirecting to login...");
-    // Call the method on the session object
-    return NextResponse.redirect(
-      new URL("/api/auth/login?post_login_redirect_url=/dashboard", request.url)
-    );
+  // Protect all routes under /dashboard
+  if (request.nextUrl.pathname.startsWith("/dashboard")) {
+    if (!user) {
+      const loginUrl = new URL("/api/auth/login", request.url);
+      return NextResponse.redirect(loginUrl);
+    }
   }
-  console.log("User is authenticated, allowing access.");
+
+  return NextResponse.next();
 }
 
+// Specify which routes use this middleware
 export const config = {
-  matcher: ["/dashboard"],
+  matcher: ["/dashboard/:path*"],
 };

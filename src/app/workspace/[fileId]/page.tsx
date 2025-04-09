@@ -25,7 +25,11 @@ function Workspace({ params }: { params: Promise<{ fileId: any }> }) {
   }, [fileId]);
   return (
     <div className="md:overflow-y-hidden h-auto">
-      <WorkspaceHeader trigger={trigger} setTrigger={setTrigger} />
+      <WorkspaceHeader
+        trigger={trigger}
+        setTrigger={setTrigger}
+        fileName={fileData?.fileName}
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-4 h-fit">
         {/*Workspace Layout*/}

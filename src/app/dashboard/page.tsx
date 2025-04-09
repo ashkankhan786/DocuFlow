@@ -32,7 +32,7 @@ function Dashboard() {
     }
   }, [user]);
   return (
-    <div className="lg:ml-0 md:ml-12 ml-24 mr-5 md:mr-7 ">
+    <div className="lg:ml-4 md:pl-20 ml-5 mr-5 md:mr-7 ">
       <Header />
       <FileList />
     </div>

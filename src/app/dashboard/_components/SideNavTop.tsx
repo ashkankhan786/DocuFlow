@@ -72,12 +72,12 @@ function SideNavTop({
   }, [user]);
   return (
     <div>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-3 dark:text-white">
         <Image src="/docuflow.png" alt="Docuflow" width={120} height={60} />
         <Popover>
           <PopoverTrigger>
-            <div className="flex items-center gap-2 px-3 py-1 hover:bg-gray-300 justify-center rounded cursor-pointer">
-              <h1 className="text-black font-bold text-base">
+            <div className="flex items-center mt-5 md:mt-0 gap-2 px-3 py-1 hover:bg-gray-300 justify-center rounded cursor-pointer">
+              <h1 className="text-black dark:text-white font-bold text-base">
                 {activeTeam?.teamName}
               </h1>
               <ChevronDown />
@@ -89,6 +89,7 @@ function SideNavTop({
                 return (
                   <div
                     className={`${activeTeam?._id === t._id && `bg-blue-400 text-white font-semibold`} hover:bg-blue-400 hover:text-white px-2 py-1 rounded cursor-pointer`}
+                    key={t._id}
                     onClick={() => setActiveTeam(t)}
                   >
                     <h1 className="font-medium">{t.teamName}</h1>
@@ -117,7 +118,7 @@ function SideNavTop({
             {user && (
               <div className="flex gap-3 py-3 items-center">
                 <Image
-                  src={user?.picture}
+                  src={user?.picture || `/default-avatar.png`}
                   alt="user"
                   width={30}
                   height={15}
@@ -134,7 +135,7 @@ function SideNavTop({
           </PopoverContent>
         </Popover>
 
-        <div className="bg-white mt-8 hover:bg-slate-200 rounded-md ">
+        <div className="dark:bg-zinc-900 bg-white mt-8 hover:bg-slate-200 rounded-md ">
           <Button
             variant="outline"
             className="flex items-center w-full justify-start"
